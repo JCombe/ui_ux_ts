@@ -1,16 +1,63 @@
-import React from 'react'
+import { NavLink } from 'react-router-dom';
 
-const VertMenuBtn = ({title}:any) => {
+const VertMenuBtn = ({ icon, title, notification, link }: any) => {
+  // const [notification, setNotification] = useState(0)
 
-    return (
-        <div className="flex  rounded-lg justify-between w-full p-3 my-4  transition delay-0 duration-300 ease-in-out hover:bg-white cursor-pointer">
-            <div className="flex w-min">
-                <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                <p >{title}</p>
-            </div>
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-        </div>
-    )
-}
+  // const generateRandom = () => {
+  //    let randomNr = Math.floor(Math.random()*10)
+  //    setNotification(randomNr)
+  // }
 
-export default VertMenuBtn
+  // useEffect(() => {
+  //     generateRandom()
+
+  // }, [])
+
+  return (
+    <NavLink
+      activeStyle={{
+        color: 'gray',
+      }}
+      to={link}
+    >
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <div className='group relative flex rounded-lg justify-between p-3 my-4 transition delay-0 duration-300 ease-in-out hover:bg-blue-100 cursor-pointer focus:ring-2'>
+                <div className='flex w-min'>
+                  <div className='pr-2'>{icon}</div>
+                  <p>{title}</p>
+                </div>
+
+                <svg
+                  className={`text-transparent w-6 h-6 group-hover:text-black`}
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
+                  xmlns='http://www.w3.org/2000/svg'
+                >
+                  <path
+                    stroke-linecap='round'
+                    stroke-linejoin='round'
+                    stroke-width='2'
+                    d='M19 9l-7 7-7-7'
+                  ></path>
+                </svg>
+                {!notification ? (
+                  ''
+                ) : (
+                  <div className='absolute right-2 bg-red-500 h-6 p-3 flex items-center justify-center rounded-full text-white group-hover:bg-transparent group-hover:text-transparent'>
+                    {notification}
+                  </div>
+                )}
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </NavLink>
+  );
+};
+
+export default VertMenuBtn;
